@@ -1,3 +1,35 @@
+export interface Error {
+	message: string
+	httpCode: number
+}
+
+interface HWResponseType {
+	name: string
+}
+
+export class HWResponse {
+	static readonly ERROR: HWResponseType = { name: "Erro" }
+	static readonly INFO: HWResponseType = { name: "Informação" }
+
+	static error(): HWResponse {
+		return new HWResponse(HWResponse.ERROR)
+	}
+
+	static info(): HWResponse {
+		return new HWResponse(HWResponse.INFO)
+	}
+
+	readonly type: string
+
+	message: string
+	detail: string
+	httpCode: number
+	[key: string]: any
+
+	private constructor(type: HWResponseType) {
+		this.type = type.name
+	}
+}
 
 export class Entity {
 	_id: string

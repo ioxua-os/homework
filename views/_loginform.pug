@@ -1,0 +1,21 @@
+
+h2.ui.header Acesse sua conta
+
+if error
+	.ui.negative.message
+		.header= error.message
+		= error.detail
+
+.ui.form.attached.segment
+	form(method='POST', action='/login')
+		.field 
+			.ui.left.icon.input
+				i.user.icon
+				input(type="email", placeholder="Endereço de e-mail", name="email")
+		.field 
+			.ui.left.icon.input
+				i.lock.icon
+				input(type="password", placeholder="Senha", name="password", required)
+		input(type='submit', value='Entrar').ui.fluid.large.primary.submit.button
+.ui.bottom.attached.message Ainda não tem uma conta? 
+	a(href="#") Cadastre-se

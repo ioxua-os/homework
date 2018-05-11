@@ -52,11 +52,11 @@ export class UserService implements Service<User> {
 
 	_mockValues() {
 		this.users.insert([
-			new User("admin", 		"admin", 		UserType.ADMIN),
-			new User("profelias", 	"profelias", 	UserType.TEACHER),
-			new User("profedith", 	"profedith",	UserType.TEACHER),
-			new User("aluno", 		"aluno", 		UserType.STUDENT),
-			new User("profedith", 	"profedith", 	UserType.STUDENT)
+			new User("admin@admin.admin", 	"admin", 		UserType.ADMIN),
+			new User("profelias@fatec.br", 	"profelias", 	UserType.TEACHER),
+			new User("profedith@fatec.br", 	"profedith",	UserType.TEACHER),
+			new User("aluno@fatec.br", 		"aluno", 		UserType.STUDENT),
+			new User("aluna@fatec.br", 		"aluna", 		UserType.STUDENT)
 		])
 	}
 }

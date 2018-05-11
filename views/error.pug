@@ -1,6 +1,9 @@
-- if (typeof(response) !== 'undefined')
-	h1= response.errors[0].httpCode
-	p= response.errors[0].message
-- else
-	h1 Ocorreu um erro D:
-	p Não houve resposta
+extend _template
+
+block content
+	- if (typeof(response) !== 'undefined')
+		h1= response.message
+		p= response.detail
+	- else
+		h1 Ocorreu um erro D:
+		p Não houve resposta

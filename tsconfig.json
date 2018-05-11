@@ -5,7 +5,7 @@
 		"typeRoots": [ "typings" ]
 	},
 	"files": [
-		"typings/express.d.ts"
+		"typings/index.d.ts"
 	],
 	"include": [
 		"src/**/*"
