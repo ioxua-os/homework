@@ -1,0 +1,30 @@
+extend _admintemplate.pug
+
+block page 
+	.ui.eleven.wide.column
+		.ui.basic.segment
+			h1.ui.header Professor
+			include _teacherform.pug
+			
+		.ui.basic.segment
+			h1.ui.header Titulo
+			table#table.ui.selectable.striped.table
+				thead
+					tr 
+						th Nome
+						th Documento
+						th Login
+						th Alterar
+						th Excluir
+				tbody
+					each i in [1, 2, 3]
+						tr
+							td Aasd 
+							td Aasd 
+							td Aasd 
+							td 
+								a(href="#")
+									i.edit.icon 
+							td 
+								a(href="#")
+									i.eraser.icon 

@@ -1,0 +1,17 @@
+form.ui.form
+	.two.fields
+		.field
+			label Nome
+			input(placeholder="Iemanjá Almeida", type="text", required)
+		.field
+			label Documento
+			input(placeholder="123.456.789-10").document.mask
+	.two.fields
+		.field
+			label Email
+			input(placeholder="rainha@domar.com.br", type="email")
+		.field
+			label Senha
+			input(placeholder="Shhh! É um segredo", type="password")
+	input(type="submit", value="Enviar").ui.right.floated.primary.button
+	input(type="reset", value="Cancelar").ui.right.floated.button

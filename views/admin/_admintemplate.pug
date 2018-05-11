@@ -1,0 +1,27 @@
+extend ../_template.pug
+
+append stylesheets
+	link(rel="stylesheet", href="sass/admin.sass")
+block content
+	.ui.stackable.grid.container
+		.ui.five.wide.column
+			.ui.secondary.vertical.menu
+				.header.item
+					a.ui.logo.icon.image(href="/admin")
+						img(src="images/hwlogo_light.png")
+				.item
+					.header Administração
+						.menu
+							a.item Professores
+							a.item Disciplinas
+							a.item Atribuição
+		
+		block page
+
+block scripts
+	script(src="lib/jquery-plugins/jquery.inputmask.bundle.min.js")
+	script.
+		$(document).ready(() => {
+			//$("#table").tablesort()
+			$(".document.mask").inputmask("999.999.999-99")
+		})
