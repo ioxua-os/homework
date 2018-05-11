@@ -23,7 +23,7 @@ app.use(compileSass({
 app.use(express.static('static'));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: 'eu sou MA-RA-VI-LHO-SO' }));
-app.use('/admin', auth_middleware_1.authRequired(model_1.UserType.ADMIN), controllers_1.adminController);
+app.use('/admin', auth_middleware_1.authRequired(model_1.UserType.ADMIN), controllers_1.AdminController);
 app.get('/', function (req, res) {
     res.render('index');
 });
@@ -43,10 +43,6 @@ function (req, res) {
         var response = Constants.DEFAULT_ERRORS.serverError;
         res.render('error', { response: response });
     });
-});
-app.get('/secret', auth_middleware_1.authRequired(model_1.UserType.ADMIN), function (req, res) {
-    console.log(req.body);
-    res.send(req.body['passwd']);
 });
 app.listen(port, function () {
     console.log("Listening on port:", port);
