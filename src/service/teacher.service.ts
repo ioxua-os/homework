@@ -17,6 +17,11 @@ export class TeacherService extends AbstractService<Teacher> {
 				"Edith", 
 				"222.333.444-69", 
 				new User("profedith@fatec.br", "profedith", UserType.TEACHER),
+			),
+			new Teacher(
+				"Leandro", 
+				"333.444.555-75", 
+				new User("ll@fatec.br", "luque", UserType.TEACHER),
 			)
 		])
 	}
