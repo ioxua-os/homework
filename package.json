@@ -6,17 +6,28 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile-ts": "tsc --outDir . && node server.js",
-    "dev": "nodemon -e ts --exec \"npm run compile-ts\"",
-    "deploy": "npm i && npm start && node server.js"
+    "deploy": "npm i && npm start && node server.js",
+    "dev:ts": "nodemon -e ts --exec \"npm run compile-ts\"",
+    "dev": "npm-run-all dev:*"
   },
   "author": "Yehoshua Oliveira <yehoshua.silva@fatec.sp.gov.br>",
   "license": "MIT",
   "dependencies": {
     "@types/express": "^4.11.1",
+    "@types/nedb": "^1.8.5",
     "@types/node": "^10.0.8",
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "express-compile-sass": "^4.0.0",
+    "express-form": "^0.12.6",
     "nedb": "^1.8.0",
+    "nedb-promise": "^2.0.1",
+    "node-sass": "^4.9.0",
     "pug": "^2.0.3",
     "typescript": "^2.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4",
+    "npm-run-all": "^4.1.3"
   }
 }

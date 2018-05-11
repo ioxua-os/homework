@@ -1,7 +1,12 @@
 {
-    "compilerOptions": {
-        "lib": ["es5", "es6"]
-    },
+	"compilerOptions": {
+		"lib": ["es5", "es6"],
+		"module": "commonjs",
+		"typeRoots": [ "typings" ]
+	},
+	"files": [
+		"typings/express.d.ts"
+	],
 	"include": [
 		"src/**/*"
 	],
