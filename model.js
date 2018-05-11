@@ -98,8 +98,11 @@ var FinishedAssignment = /** @class */ (function (_super) {
 exports.FinishedAssignment = FinishedAssignment;
 var Subject = /** @class */ (function (_super) {
     __extends(Subject, _super);
-    function Subject() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function Subject(code, name) {
+        var _this = _super.call(this) || this;
+        _this.code = code;
+        _this.name = name;
+        return _this;
     }
     return Subject;
 }(Entity));

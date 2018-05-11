@@ -17,6 +17,7 @@
     "@types/nedb": "^1.8.5",
     "@types/node": "^10.0.8",
     "body-parser": "^1.18.2",
+    "connect-nedb-session-two": "^1.0.3",
     "express": "^4.16.3",
     "express-compile-sass": "^4.0.0",
     "express-form": "^0.12.6",

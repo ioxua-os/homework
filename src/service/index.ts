@@ -1,2 +1,3 @@
-export * from './users.service'
-export * from './teachers.service'
+export * from './user.service'
+export * from './teacher.service'
+export * from './subject.service'

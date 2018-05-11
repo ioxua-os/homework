@@ -4,12 +4,12 @@ import * as express     from 'express'
 import * as session     from 'express-session'
 import * as bodyParser  from 'body-parser'
 import * as compileSass from 'express-compile-sass'
+import * as NedbStore 	from 'connect-nedb-session-two'
 import * as Constants   from './constants'
 
 import { User, UserType, HWResponse }  from './model'
-import { UserService }  from './service/users.service'
+import { UserService }  from './service'
 import { authRequired } from './middlewares/auth.middleware'
-import { SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG } from 'constants'
 import { AdminController } from './controllers';
 
 // A very ugly fix e.e
@@ -31,11 +31,15 @@ app.use(compileSass({
 	watchFiles: true,
 	logToConsole: true
 }))
-app.use(express.static('static'))
+app.use('/static', express.static('static'))
 app.use(express.urlencoded({extended: true}))
-app.use(session({secret: 'eu sou MA-RA-VI-LHO-SO'}))
+app.use(express.json())
+app.use(session({
+	secret: 'eu sou MA-RA-VI-LHO-SO',
+	saveUninitialized: true
+}))
 
-app.use('/admin', authRequired(UserType.ADMIN), AdminController)
+app.use('/admin', /*authRequired(UserType.ADMIN),*/ AdminController)
 
 app.get('/', (req, res) => {
 	res.render('index')
@@ -48,8 +52,9 @@ app.post('/login',
 		.then((usr) => {
 			console.log(usr)
 			if(usr) {
-				req.session[Constants.SESSION_KEYS.loggedInUser] = usr
 				res.redirect('/admin')
+				req.session[Constants.SESSION_KEYS.loggedInUser] = usr
+				return
 			}
 			else
 				res.render('login', { error: Constants.DEFAULT_ERRORS.loginError })

@@ -5,9 +5,7 @@ var express = require("express");
 var session = require("express-session");
 var compileSass = require("express-compile-sass");
 var Constants = require("./constants");
-var model_1 = require("./model");
-var users_service_1 = require("./service/users.service");
-var auth_middleware_1 = require("./middlewares/auth.middleware");
+var service_1 = require("./service");
 var controllers_1 = require("./controllers");
 var app = express();
 var port = Number(process.env.PORT) || 3000;
@@ -20,22 +18,27 @@ app.use(compileSass({
     watchFiles: true,
     logToConsole: true
 }));
-app.use(express.static('static'));
+app.use('/static', express.static('static'));
 app.use(express.urlencoded({ extended: true }));
-app.use(session({ secret: 'eu sou MA-RA-VI-LHO-SO' }));
-app.use('/admin', auth_middleware_1.authRequired(model_1.UserType.ADMIN), controllers_1.AdminController);
+app.use(express.json());
+app.use(session({
+    secret: 'eu sou MA-RA-VI-LHO-SO',
+    saveUninitialized: true
+}));
+app.use('/admin', /*authRequired(UserType.ADMIN),*/ controllers_1.AdminController);
 app.get('/', function (req, res) {
     res.render('index');
 });
 app.post('/login', 
 // TODO Implement form validation
 function (req, res) {
-    users_service_1.UserService.getInstance().login(req.body['email'], req.body['password'])
+    service_1.UserService.getInstance().login(req.body['email'], req.body['password'])
         .then(function (usr) {
         console.log(usr);
         if (usr) {
-            req.session[Constants.SESSION_KEYS.loggedInUser] = usr;
             res.redirect('/admin');
+            req.session[Constants.SESSION_KEYS.loggedInUser] = usr;
+            return;
         }
         else
             res.render('login', { error: Constants.DEFAULT_ERRORS.loginError });

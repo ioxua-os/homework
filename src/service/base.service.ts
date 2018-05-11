@@ -5,6 +5,6 @@ export interface Service<T> {
 	getById(id: string): Promise<T>
 	list(): Promise<T[]>
 	edit(what: T): Promise<T>
-	delete(what: T|number): Promise<number>
+	delete(what: T|string): Promise<number>
 	_mockValues(): void
 }

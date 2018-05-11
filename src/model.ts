@@ -33,7 +33,6 @@ export class HWResponse {
 
 export class Entity {
 	_id: string
-	createdAt: Date
 }
 
 export class Person extends Entity {
@@ -94,6 +93,12 @@ export class Subject extends Entity {
 	code: string
 	name: string
 	teacher: Teacher
+	
+	constructor(code: string, name: string) {
+		super()
+		this.code = code
+		this.name = name
+	}
 }
 
 export class Material extends Entity {

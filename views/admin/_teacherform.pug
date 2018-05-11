@@ -1,17 +1,34 @@
-form.ui.form
+form.ui.form(method="POST", action=(teacher? "/admin/teacher/edit/" + teacher._id : "/admin/teacher/"))
 	.two.fields
 		.field
 			label Nome
-			input(placeholder="Iemanjá Almeida", type="text", required)
+			input(placeholder="Iemanjá Almeida", 
+				type="text", 
+				name="name", 
+				required, 
+				value=(teacher? teacher.name : ""))
 		.field
 			label Documento
-			input(placeholder="123.456.789-10").document.mask
+			input.document.mask(placeholder="123.456.789-10", 
+				name="document", 
+				value=(teacher? teacher.document : ""))
 	.two.fields
 		.field
 			label Email
-			input(placeholder="rainha@domar.com.br", type="email")
+			input(placeholder="rainha@domar.com.br", 
+				type="email", 
+				name="email", 
+				value=(teacher? teacher.user.login : ""))
 		.field
 			label Senha
-			input(placeholder="Shhh! É um segredo", type="password")
-	input(type="submit", value="Enviar").ui.right.floated.primary.button
-	input(type="reset", value="Cancelar").ui.right.floated.button
+			input(placeholder="Shhh! É um segredo", 
+				type="password", 
+				name="passwd", 
+				value=(teacher? teacher.user.passwd : ""))
+	
+	input(type="submit", value=(teacher? "Editar" : "Cadastrar")).ui.right.floated.primary.button
+	if teacher
+		input(type="hidden", name="userId", value=teacher.user._id)
+		a.ui.button.right.floated(href="/admin/teachers") Cancelar
+	else
+		input(type="reset", value="Cancelar").ui.right.floated.button

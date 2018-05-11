@@ -1,0 +1,20 @@
+table#table.ui.selectable.striped.table
+	thead
+		tr 
+			th Nome
+			th Documento
+			th Login
+			th Alterar
+			th Excluir
+	tbody
+		each teacher in teachers
+			tr
+				td= teacher.name 
+				td= teacher.document 
+				td= teacher.user.login 
+				td 
+					a(href="/admin/teacher/edit/" + teacher._id).edit
+						i.edit.icon 
+				td 
+					a(href="#", data-id=teacher._id).delete
+						i.eraser.icon
