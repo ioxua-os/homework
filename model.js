@@ -10,6 +10,16 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
+var HWResponse = /** @class */ (function () {
+    function HWResponse(err) {
+        if (Array.isArray(err))
+            this.errors = err;
+        else
+            this.errors = [err];
+    }
+    return HWResponse;
+}());
+exports.HWResponse = HWResponse;
 var Entity = /** @class */ (function () {
     function Entity() {
     }
@@ -28,6 +38,15 @@ var Person = /** @class */ (function (_super) {
     return Person;
 }(Entity));
 exports.Person = Person;
+var UserType = /** @class */ (function () {
+    function UserType() {
+    }
+    UserType.TEACHER = "Professor";
+    UserType.STUDENT = "Aluno";
+    UserType.ADMIN = "Administrador";
+    return UserType;
+}());
+exports.UserType = UserType;
 var User = /** @class */ (function (_super) {
     __extends(User, _super);
     function User(login, passwd, role) {
