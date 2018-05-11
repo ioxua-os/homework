@@ -1,6 +1,6 @@
 
 export class Entity {
-	id: number
+	_id: string
 	createdAt: Date
 }
 
@@ -17,12 +17,18 @@ export class Person extends Entity {
 	}
 }
 
+export class UserType {
+	static readonly TEACHER	: string = "Professor"
+	static readonly STUDENT	: string = "Aluno"
+	static readonly ADMIN	: string = "Administrador"
+}
+
 export class User extends Entity {
 	login: string
 	passwd: string
-	role: string
+	role: UserType
 	
-	constructor(login: string, passwd: string, role: string) {
+	constructor(login: string, passwd: string, role: UserType) {
 		super()
 		this.login  = login
 		this.passwd = passwd
