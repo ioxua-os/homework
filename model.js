@@ -11,12 +11,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var HWResponse = /** @class */ (function () {
-    function HWResponse(err) {
-        if (Array.isArray(err))
-            this.errors = err;
-        else
-            this.errors = [err];
+    function HWResponse(type) {
+        this.type = type.name;
     }
+    HWResponse.error = function () {
+        return new HWResponse(HWResponse.ERROR);
+    };
+    HWResponse.info = function () {
+        return new HWResponse(HWResponse.INFO);
+    };
+    HWResponse.ERROR = { name: "Erro" };
+    HWResponse.INFO = { name: "Informação" };
     return HWResponse;
 }());
 exports.HWResponse = HWResponse;

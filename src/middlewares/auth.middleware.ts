@@ -13,9 +13,7 @@ export function authRequired(role: string) {
 				console.log("nn tem a role certa ")
 		}
 
-		const response: HWResponse = new HWResponse({
-			message: Constants.ERROR_MESSAGES.accessDenied, httpCode: 403
-		})
+		const response: HWResponse = Constants.DEFAULT_ERRORS.accessDenied
 
 		res
 			.status(403)

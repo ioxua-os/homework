@@ -6,5 +6,5 @@ export interface Service<T> {
 	list(): Promise<T[]>
 	edit(what: T): Promise<T>
 	delete(what: T|number): Promise<number>
-	mockValues(): void
+	_mockValues(): void
 }

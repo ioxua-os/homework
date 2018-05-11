@@ -15,9 +15,13 @@ export class UserService implements Service<User> {
 	public static getInstance() {
 		if( !UserService.instance ) {
 			UserService.instance = new UserService()
-			UserService.instance.mockValues()
+			UserService.instance._mockValues()
 		}
 		return UserService.instance
+	}
+
+	login(login: string, passwd: string): Promise<User> {
+		return this.users.findOne({login, passwd})
 	}
 
 	save(what: User|User[]): Promise<User|User[]> {
@@ -46,7 +50,7 @@ export class UserService implements Service<User> {
 		return this.users.remove({_id: key}) as Promise<number>
 	}
 
-	mockValues() {
+	_mockValues() {
 		this.users.insert([
 			new User("admin", 		"admin", 		UserType.ADMIN),
 			new User("profelias", 	"profelias", 	UserType.TEACHER),
