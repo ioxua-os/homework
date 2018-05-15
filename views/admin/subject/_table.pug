@@ -1,0 +1,24 @@
+table#table.ui.selectable.striped.table
+	thead
+		tr 
+			th Código
+			th Nome
+			th Professor
+			th Alterar
+			th Excluir
+	tbody
+		each subject in subjects
+			tr
+				td= subject.code
+				td= subject.name
+				td
+					if subject.teacher
+						= subject.teacher.name
+					else
+						| Nenhum
+				td 
+					a(href="/admin/subject/" + subject._id).edit
+						i.edit.icon 
+				td 
+					a(href="#", data-id=subject._id).delete
+						i.eraser.icon

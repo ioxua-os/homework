@@ -1,0 +1,26 @@
+form.ui.form(method="POST", action=('/admin/subject/' + (subject? `${subject._id}?_method=PUT` : '')))
+	.three.fields
+		.field
+			label Código
+			input(placeholder="BAT1234", 
+				name="code", 
+				value=(subject? subject.code : ""))
+		.field
+			label Nome
+			input(placeholder="Análise de Batatas", 
+				type="text", 
+				name="name", 
+				required, 
+				value=(subject? subject.name : ""))
+		.field
+			label Professor
+			select.ui.fluid.dropdown.selection(name="teacherId")
+				option(value="-1", selected) Nenhum
+				each teacher in teachers
+					option(value=teacher._id)= teacher.name
+	
+	input(type="submit", value=(subject? "Editar" : "Cadastrar")).ui.right.floated.primary.button
+	if subject
+		a.ui.button.right.floated(href="/admin/subjects") Cancelar
+	else
+		input(type="reset", value="Cancelar").ui.right.floated.button

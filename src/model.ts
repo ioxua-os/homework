@@ -40,7 +40,7 @@ export class Person extends Entity {
 	document: string
 	user: User
 	
-	constructor(name: string, document: string, user: User) {
+	constructor(name?: string, document?: string, user?: User) {
 		super()
 		this.name     = name
 		this.document = document

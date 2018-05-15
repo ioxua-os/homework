@@ -9,10 +9,10 @@ export class SubjectService extends AbstractService<Subject> {
 	_mockValues() {
 		this.datastore.insert([
 			new Subject("HST002", "Sociedade e Tecnologia"),
-			new Subject("HST002", "Engenharia de Software I"),
-			new Subject("HST002", "Engenharia de Software II"),
-			new Subject("HST002", "Engenharia de Software III"),
-			new Subject("HST002", "Cálculo")
+			new Subject("SFT001", "Engenharia de Software I"),
+			new Subject("SFT002", "Engenharia de Software II"),
+			new Subject("SFT003", "Engenharia de Software III"),
+			new Subject("MAT001", "Cálculo")
 		])
 	}
 

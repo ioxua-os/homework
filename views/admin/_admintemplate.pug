@@ -1,6 +1,7 @@
 extend ../_template.pug
 
 append stylesheets
+	//link(rel="stylesheet", href="/static/lib/semantic/components/form.min.css")
 	link(rel="stylesheet", href="/sass/admin.sass")
 	
 block content
@@ -11,11 +12,3 @@ block content
 			block menu
 		
 		block page
-
-block scripts
-	script(src="/static/lib/jquery-plugins/jquery.inputmask.bundle.min.js")
-	script.
-		$(document).ready(() => {
-			//$("#table").tablesort()
-			$(".document.mask").inputmask("999.999.999-99")
-		})

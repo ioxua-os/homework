@@ -20,10 +20,10 @@ var SubjectService = /** @class */ (function (_super) {
     SubjectService.prototype._mockValues = function () {
         this.datastore.insert([
             new model_1.Subject("HST002", "Sociedade e Tecnologia"),
-            new model_1.Subject("HST002", "Engenharia de Software I"),
-            new model_1.Subject("HST002", "Engenharia de Software II"),
-            new model_1.Subject("HST002", "Engenharia de Software III"),
-            new model_1.Subject("HST002", "Cálculo")
+            new model_1.Subject("SFT001", "Engenharia de Software I"),
+            new model_1.Subject("SFT002", "Engenharia de Software II"),
+            new model_1.Subject("SFT003", "Engenharia de Software III"),
+            new model_1.Subject("MAT001", "Cálculo")
         ]);
     };
     SubjectService.getInstance = function () {
