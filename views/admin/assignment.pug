@@ -10,35 +10,29 @@ block menu
 block page 
 	.ui.basic.segment
 		h1.ui.header Atribuição
-		include subject/_form.pug
-		
-	.ui.basic.segment
-		h1.ui.header Listagem
-		include subject/_table.pug
+		table.ui.celled.collapsing.definition.table
+			thead
+				tr
+					th 
+					each subject in subjects
+						th.popup(data-content=subject.name data-position="bottom right")= subject.code
+			tbody
+				each teacher in teachers
+					tr
+						td= teacher.name
+						each subject in subjects
+							td.collapsing 
+								.ui.fitted.slider.checkbox
+									input(type="checkbox")
+									label
 
 append scripts
-	script(src="/static/lib/semantic/components/dimmer.min.js")
 	script(src="/static/lib/semantic/components/transition.min.js")
-	script(src="/static/lib/semantic/components/modal.min.js")
+	script(src="/static/lib/semantic/components/popup.min.js")
 	script.
 		$(document).ready(() => {
-			let isEditando = false
-
-			$("a.delete").click(function() {
-				const id = $(this).data('id')
-				const $modal = $("#deletar")
-				$modal.modal({
-					onApprove: () => {
-						$modal.addClass('loading')
-						$.ajax({
-							url: '/admin/subject/' + id + '?_method=DELETE',
-							method: 'DELETE'
-						}).done((data) => {
-							window.location.reload()
-						}).fail((err) => {
-							window.location.reload()
-						})
-					}
-				}).modal('show')
-			})
+			$('.popup')
+				.popup({
+				})
+			;
 		})
