@@ -6,6 +6,7 @@ import * as bodyParser  from 'body-parser'
 import * as compileSass from 'express-compile-sass'
 import * as NedbStore 	from 'connect-nedb-session-two'
 import * as Constants   from './constants'
+import * as methodOverride from 'method-override'
 
 import { User, UserType, HWResponse }  from './model'
 import { UserService }  from './service'
@@ -34,6 +35,7 @@ app.use(compileSass({
 app.use('/static', express.static('static'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(methodOverride('_method'))
 app.use(session({
 	secret: 'eu sou MA-RA-VI-LHO-SO',
 	saveUninitialized: true

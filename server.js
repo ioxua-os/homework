@@ -5,6 +5,7 @@ var express = require("express");
 var session = require("express-session");
 var compileSass = require("express-compile-sass");
 var Constants = require("./constants");
+var methodOverride = require("method-override");
 var service_1 = require("./service");
 var controllers_1 = require("./controllers");
 var app = express();
@@ -21,6 +22,7 @@ app.use(compileSass({
 app.use('/static', express.static('static'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 app.use(session({
     secret: 'eu sou MA-RA-VI-LHO-SO',
     saveUninitialized: true

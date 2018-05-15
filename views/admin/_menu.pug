@@ -1,0 +1,14 @@
+mixin _menuOption(src, name, current)
+	a.item(href=src, class=(name == current? 'active': ''))= name
+
+mixin menu(currentUrl)
+	.ui.secondary.vertical.menu
+		.header.item
+			a.ui.logo.icon.image(href="/admin")
+				img(src="/static/images/hwlogo_light.png")
+		.item
+			.header Administração
+				.menu
+					+_menuOption('/teachers', 'Professores', currentUrl)
+					+_menuOption('/subjects', 'Disciplinas', currentUrl)
+					+_menuOption('/assignment', 'Atribuição', currentUrl)

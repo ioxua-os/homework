@@ -22,6 +22,7 @@
     "express-compile-sass": "^4.0.0",
     "express-form": "^0.12.6",
     "express-session": "^1.15.6",
+    "method-override": "^2.3.10",
     "nedb": "^1.8.0",
     "nedb-promise": "^2.0.1",
     "node-sass": "^4.9.0",

@@ -4,18 +4,11 @@ append stylesheets
 	link(rel="stylesheet", href="/sass/admin.sass")
 	
 block content
+	include _menu.pug
+
 	.ui.stackable.grid.container
 		.ui.five.wide.column
-			.ui.secondary.vertical.menu
-				.header.item
-					a.ui.logo.icon.image(href="/admin")
-						img(src="/static/images/hwlogo_light.png")
-				.item
-					.header Administração
-						.menu
-							a.item Professores
-							a.item Disciplinas
-							a.item Atribuição
+			block menu
 		
 		block page
 

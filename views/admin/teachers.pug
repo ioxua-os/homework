@@ -6,6 +6,10 @@ block title
 	else
 		| Professores
 
+block menu
+	include _menu.pug
+	+menu(pageUrl)
+
 block modals
 	#deletar.ui.tiny.modal
 		.header Tem certeza de que quer apagra este registro?

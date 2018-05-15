@@ -1,0 +1,35 @@
+form.ui.form(method="POST", action=(teacher? "/admin/teacher/" + teacher._id : "/admin/teacher/"))
+	.two.fields
+		.field
+			label Nome
+			input(placeholder="Iemanjá Almeida", 
+				type="text", 
+				name="name", 
+				required, 
+				value=(teacher? teacher.name : ""))
+		.field
+			label Documento
+			input.document.mask(placeholder="123.456.789-10", 
+				name="document", 
+				value=(teacher? teacher.document : ""))
+	.two.fields
+		.field
+			label Email
+			input(placeholder="rainha@domar.com.br", 
+				type="email", 
+				name="email", 
+				value=(teacher? teacher.user.login : ""))
+		.field
+			label Senha
+			input(placeholder="Shhh! É um segredo", 
+				type="password", 
+				name="passwd", 
+				value=(teacher? teacher.user.passwd : ""))
+	
+	input(type="hidden", name="_method", value=(subject? "PUT" : "POST"))
+	input(type="submit", value=(subject? "Editar" : "Cadastrar")).ui.right.floated.primary.button
+	if subject
+		input(type="hidden", name="subjectId", value=subject._id)
+		a.ui.button.right.floated(href="/admin/subjects") Cancelar
+	else
+		input(type="reset", value="Cancelar").ui.right.floated.button
