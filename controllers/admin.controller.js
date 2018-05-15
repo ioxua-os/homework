@@ -6,4 +6,5 @@ var teacher_controller_1 = require("./admin/teacher.controller");
 var router = express_1.Router();
 router.use(subject_controller_1.SubjectController);
 router.use(teacher_controller_1.TeacherController);
+router.use(AssignmentController);
 exports.AdminController = router;

@@ -1,25 +1,15 @@
 extend _admintemplate.pug
 
 block title 
-	if subject
-		| Editando disciplina
-	else
-		| Disciplinas
+	| Atribuição
 
 block menu
 	include _menu.pug
-	+menu('Disciplinas')
+	+menu('Atribuição')
 
-block modals
-	#deletar.ui.tiny.modal
-		.header Tem certeza de que quer apagar este registro?
-		.actions 
-			.ui.cancel.green.button Não TT_TT
-			.ui.approve.red.button Sim 
-
-block page
+block page 
 	.ui.basic.segment
-		h1.ui.header Professor
+		h1.ui.header Atribuição
 		include subject/_form.pug
 		
 	.ui.basic.segment
