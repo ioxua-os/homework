@@ -1,5 +1,3 @@
-import * as Datastore from 'nedb'
-
 export interface Service<T> {
 	save(what: T|T[]): Promise<T|T[]>
 	getById(id: string): Promise<T>
