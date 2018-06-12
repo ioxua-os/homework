@@ -1,35 +1,23 @@
-extend _admintemplate.pug
+extend _teachertemplate.pug
 
 block title 
 	if subject
-		| Editando disciplina
-	else
-		| Disciplinas
+		=subject.name
 
 block menu
 	include _menu.pug
-	+menu('Disciplinas')
+	+menu(subject.name)
 
 block modals
-	#deletar.ui.tiny.modal
-		.header Tem certeza de que quer apagar este registro?
-		.actions 
-			.ui.cancel.green.button Não TT_TT
-			.ui.approve.red.button Sim 
 
 block page
 	.ui.basic.segment
-		h1.ui.header Professor
-		include ../common/subject/_form.pug
+		h1.ui.header Atividades
 		
 	.ui.basic.segment
-		h1.ui.header Listagem
-		include ../common/subject/_table.pug
+		h1.ui.header Materiais
 
 append scripts
-	script(src="/static/lib/semantic/components/dimmer.min.js")
-	script(src="/static/lib/semantic/components/transition.min.js")
-	script(src="/static/lib/semantic/components/modal.min.js")
 	script.
 		$(document).ready(() => {
 			let isEditando = false
