@@ -9,11 +9,11 @@ import * as Constants   from './constants'
 import * as methodOverride from 'method-override'
 
 import { User, UserType, HWResponse }  from './model'
-import { UserService }  from './service'
+import { UserService, TeacherService }  from './service'
 import { authRequired } from './middlewares/auth.middleware'
-import { AdminController } from './controllers';
+import { AdminController, TeacherController } from './controllers';
 
-// A very ugly fix e.e
+// FIXME A very ugly fix e.e
 interface Request extends express.Request {
 	session: {[key: string]: any}
 	//form: {[key: string]: any}
@@ -22,6 +22,14 @@ interface Request extends express.Request {
 const app: express.Application = express()
 const port: number = Number(process.env.PORT) || 3000;
 const root: string = process.cwd()
+
+let mainPages = {}
+mainPages[UserType.ADMIN] = "/admin"
+mainPages[UserType.TEACHER] = "/teacher"
+mainPages[UserType.STUDENT] = "/student"
+
+// FIXME: Eu sei que isso é uma gambiarra e.e
+TeacherService.getInstance()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -42,6 +50,7 @@ app.use(session({
 }))
 
 app.use('/admin', /*authRequired(UserType.ADMIN),*/ AdminController)
+app.use('/teacher', /*authRequired(UserType.ADMIN),*/ TeacherController)
 
 app.get('/', (req, res) => {
 	res.render('index')
@@ -50,11 +59,12 @@ app.get('/', (req, res) => {
 app.post('/login',
 	// TODO Implement form validation
 	(req: Request, res) => {
+		console.log(req.body)
 		UserService.getInstance().login(req.body['email'], req.body['password'])
-		.then((usr) => {
-			console.log(usr)
+		.then((usr: User) => {
+			
 			if(usr) {
-				res.redirect('/admin')
+				res.redirect(mainPages[''+usr.role]) // FIXME Oh Lord, save-me
 				req.session[Constants.SESSION_KEYS.loggedInUser] = usr
 				return
 			}

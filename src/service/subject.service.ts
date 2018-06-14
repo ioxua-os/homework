@@ -1,5 +1,5 @@
 import { datastore } from 'nedb-promise'
-import { Subject } from '../model';
+import { Subject, Teacher } from '../model';
 import { AbstractService } from './abstract.service';
 
 export class SubjectService extends AbstractService<Subject> {
@@ -26,6 +26,10 @@ export class SubjectService extends AbstractService<Subject> {
 
 	public getInstance() {
 		return SubjectService.getInstance()
+	}
+
+	findByTeacher(teacher: Teacher): Promise<Subject[]> {
+		return this.datastore.find({"teacher._id": teacher._id})
 	}
 
 }

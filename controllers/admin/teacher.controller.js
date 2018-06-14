@@ -51,8 +51,6 @@ function instantiateTeacher(req) {
     var teacher = new model_1.Teacher(req.body.name, req.body.document, new model_1.User(req.body.email, req.body.passwd, model_1.UserType.TEACHER));
     if (req.params.id)
         teacher._id = req.params.id;
-    if (req.body.userId)
-        teacher.user._id = req.body.userId;
     return teacher;
 }
 exports.TeacherController = router;

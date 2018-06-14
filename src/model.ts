@@ -54,13 +54,12 @@ export class UserType {
 	static readonly ADMIN	: string = "Administrador"
 }
 
-export class User extends Entity {
+export class User {
 	login: string
 	passwd: string
 	role: UserType
 	
 	constructor(login: string, passwd: string, role: UserType) {
-		super()
 		this.login  = login
 		this.passwd = passwd
 		this.role  = role

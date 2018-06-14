@@ -65,8 +65,6 @@ function instantiateTeacher(req: Request): Teacher {
 
 	if(req.params.id) 
 		teacher._id 	 = req.params.id
-	if(req.body.userId)
-		teacher.user._id = req.body.userId
 	
 	return teacher
 }

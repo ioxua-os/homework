@@ -1,6 +1,6 @@
-import { datastore } from 'nedb-promise'
 import { Teacher, User, UserType } from '../model';
 import { AbstractService } from './abstract.service';
+import { UserService } from '.';
 
 export class TeacherService extends AbstractService<Teacher> {
 
@@ -10,18 +10,18 @@ export class TeacherService extends AbstractService<Teacher> {
 		this.datastore.insert([
 			new Teacher(
 				"Elias", 
-				"111.222.333-96", 
-				new User("profelias@fatec.br", "profelias", UserType.TEACHER)
+				"111.222.333-96",
+				new User("elias@fatec.br", "profelias", UserType.TEACHER)
 			),
 			new Teacher(
 				"Edith", 
-				"222.333.444-69", 
-				new User("profedith@fatec.br", "profedith", UserType.TEACHER),
+				"222.333.444-69",
+				new User("edith@fatec.br", "profedith", UserType.TEACHER)
 			),
 			new Teacher(
 				"Leandro", 
-				"333.444.555-75", 
-				new User("ll@fatec.br", "luque", UserType.TEACHER),
+				"333.444.555-75",
+				new User("luque@fatec.br", "profluque", UserType.TEACHER)
 			)
 		])
 	}
@@ -36,6 +36,10 @@ export class TeacherService extends AbstractService<Teacher> {
 
 	public getInstance() {
 		return TeacherService.getInstance()
+	}
+
+	getByUser(user: User): Promise<Teacher> {
+		return this.datastore.findOne({"user.login": user.login, "user.passwd": user.passwd})
 	}
 
 }

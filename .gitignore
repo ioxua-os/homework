@@ -61,4 +61,5 @@ typings/
 .next
 
 # We are using typescript so...
-./*.js
+**/*.js
+service/
