@@ -51,7 +51,7 @@ router.get('/teacher/edit/:id', (req: Request, res: Response) => {
 router.post('/teacher/edit/:id', (req: Request, res: Response) => {
 	const teacher = instantiateTeacher(req)
 
-	TeacherService.getInstance().edit(teacher).then((data) => {
+	TeacherService.getInstance().edit(teacher).then(_ => {
 		res.redirect('admin/teachers')
 	})
 })

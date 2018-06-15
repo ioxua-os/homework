@@ -68,10 +68,8 @@ function instantiateSubject(req: Request): Subject {
 
 	if(req.params.id) 
 		subject._id 	 = req.params.id
-	if(req.body.teacherId != -1) {
-		subject.teacher = new Teacher()
-		subject.teacher._id = req.body.teacherId
-	}
+	if(req.body.teacherId != -1)
+		subject.teacher_id = req.body.teacherId
 	
 	return subject
 }

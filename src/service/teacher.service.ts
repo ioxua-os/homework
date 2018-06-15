@@ -42,4 +42,8 @@ export class TeacherService extends AbstractService<Teacher> {
 		return this.datastore.findOne({"user.login": user.login, "user.passwd": user.passwd})
 	}
 
+	getByName(name: string): Promise<Teacher> {
+		return this.datastore.findOne({ name })
+	}
+
 }

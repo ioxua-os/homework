@@ -1,2 +1,9 @@
-| Olá, prof
-=teacher.name
+extends _teachertemplate.pug
+
+block menu
+	include _menu.pug
+	+menu('asdsad', subjects)
+
+block page
+	| Olá, prof
+	=teacher.name

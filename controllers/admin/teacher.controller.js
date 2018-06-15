@@ -43,7 +43,7 @@ router.get('/teacher/edit/:id', function (req, res) {
 });
 router.post('/teacher/edit/:id', function (req, res) {
     var teacher = instantiateTeacher(req);
-    service_1.TeacherService.getInstance().edit(teacher).then(function (data) {
+    service_1.TeacherService.getInstance().edit(teacher).then(function (_) {
         res.redirect('admin/teachers');
     });
 });

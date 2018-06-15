@@ -14,16 +14,20 @@ interface SessionRequest extends Request {
 
 router.get('/', (req: SessionRequest, res: Response): void => {
 	const loggedUser = req.session[Constants.SESSION_KEYS.loggedInUser]
-	TeacherService.getInstance().getInstance().getByUser(loggedUser)
+	TeacherService.getInstance().getByUser(loggedUser)
 	.then((teacher: Teacher): void => {
 		Promise.all([
-			SubjectService.getInstance().findByTeacher(teacher)
+			SubjectService.getInstance().findByTeacher(teacher),
 		])
 		.then((results: any[]): void => {
 			const subjects = results[0]
-			res.render('teacher/index', {data: {subjects, teacher}})
+			res.render('teacher/index', {subjects, teacher})
 		})
 	})
+})
+
+router.get('/subjects/:id', (req, res) => {
+	
 })
 
 export const TeacherController = router

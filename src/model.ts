@@ -91,12 +91,13 @@ export class FinishedAssignment extends Entity {
 export class Subject extends Entity {
 	code: string
 	name: string
-	teacher: Teacher
+	teacher_id: string
 	
-	constructor(code: string, name: string) {
+	constructor(code: string, name: string, teacher_id?: string) {
 		super()
 		this.code = code
 		this.name = name
+		this.teacher_id = teacher_id
 	}
 }
 

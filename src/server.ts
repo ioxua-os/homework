@@ -9,7 +9,7 @@ import * as Constants   from './constants'
 import * as methodOverride from 'method-override'
 
 import { User, UserType, HWResponse }  from './model'
-import { UserService, TeacherService }  from './service'
+import { UserService, TeacherService, SubjectService }  from './service'
 import { authRequired } from './middlewares/auth.middleware'
 import { AdminController, TeacherController } from './controllers';
 
@@ -30,6 +30,7 @@ mainPages[UserType.STUDENT] = "/student"
 
 // FIXME: Eu sei que isso é uma gambiarra e.e
 TeacherService.getInstance()
+SubjectService.getInstance()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -62,10 +63,9 @@ app.post('/login',
 		console.log(req.body)
 		UserService.getInstance().login(req.body['email'], req.body['password'])
 		.then((usr: User) => {
-			
 			if(usr) {
-				res.redirect(mainPages[''+usr.role]) // FIXME Oh Lord, save-me
 				req.session[Constants.SESSION_KEYS.loggedInUser] = usr
+				res.redirect(mainPages[''+usr.role]) // FIXME: Oh Lord, save-me
 				return
 			}
 			else

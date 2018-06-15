@@ -56,10 +56,8 @@ function instantiateSubject(req) {
     var subject = new model_1.Subject(req.body.code, req.body.name);
     if (req.params.id)
         subject._id = req.params.id;
-    if (req.body.teacherId != -1) {
-        subject.teacher = new model_1.Teacher();
-        subject.teacher._id = req.body.teacherId;
-    }
+    if (req.body.teacherId != -1)
+        subject.teacher_id = req.body.teacherId;
     return subject;
 }
 exports.SubjectController = router;
