@@ -1,0 +1,20 @@
+table#table.ui.selectable.striped.table
+	thead
+		tr 
+			th Título
+			//th Ler
+			th Alterar
+			th Excluir
+	tbody
+		each material in materials
+			tr
+				td= material.title
+				//td 
+					a(href="#").view
+						i.eye.icon 
+				td 
+					a(href="/teacher/subjects/" + subject._id + '/materials/' + material._id + "/edit").edit
+						i.edit.icon 
+				td 
+					a(href="#", data-id=material._id).delete
+						i.eraser.icon

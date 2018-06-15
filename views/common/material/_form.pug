@@ -1,0 +1,18 @@
+form.ui.form(method="POST", action=('/teacher/subjects/' + subject._id + '/materials/' + (material? `${material._id}?_method=PUT` : '')))
+	.field
+		label Título
+		input(placeholder="A Anatomia de uma Batata", 
+			name="title", 
+			value=(material? material.title : ""))
+	.field
+		label Conteúdo
+		textarea(placeholder="Lorem ipsum dolor sit amet...",
+			rows="4"
+			name="content")
+			=(material? material.content : "")
+	
+	input(type="submit", value=(material? "Editar" : "Cadastrar")).ui.right.floated.primary.button
+	if material
+		a.ui.button.right.floated(href="/teacher/subjects/" + subject._id + "/materials") Cancelar
+	else
+		input(type="reset", value="Cancelar").ui.right.floated.button

@@ -3,10 +3,12 @@ extend ../_template.pug
 append stylesheets
 	//link(rel="stylesheet", href="/static/lib/semantic/components/form.min.css")
 	link(rel="stylesheet", href="/sass/teacher.sass")
-	
-block content
-	include _menu.pug
 
+block title 
+	if subject
+		=subject.name
+		
+block content
 	.ui.stackable.grid.container
 		.ui.five.wide.column
 			block menu

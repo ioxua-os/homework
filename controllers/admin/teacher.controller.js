@@ -26,7 +26,7 @@ router.post('/teacher', function (req, res) {
     });
 });
 router["delete"]('/teacher/:id', function (req, res) {
-    service_1.TeacherService.getInstance()["delete"](req.params.id).then(function (teachers) {
+    service_1.TeacherService.getInstance()["delete"](req.params.id).then(function (_) {
         res.redirect('admin/teachers');
     });
 });

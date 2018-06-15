@@ -31,7 +31,7 @@ router.post('/teacher', (req: Request, res: Response) => {
 })
 
 router.delete('/teacher/:id', (req: Request, res: Response) => {
-	TeacherService.getInstance().delete(req.params.id).then(teachers => {
+	TeacherService.getInstance().delete(req.params.id).then(_ => {
 		res.redirect('admin/teachers')
 	})
 })

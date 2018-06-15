@@ -1,0 +1,44 @@
+extend _teachertemplate.pug
+
+block menu
+	include _menu.pug
+	+menu('/teacher/subjects/' + subject._id + '/assignments', subjects)
+
+block modals
+	include ../common/_modaldelete.pug
+
+block page
+	.ui.basic.segment
+		h1.ui.header Atividades
+		include ../common/assignment/_form.pug
+		
+	.ui.basic.segment
+		h1.ui.header Listagem
+		include ../common/assignment/_table.pug
+
+append scripts
+	script(src="/static/lib/semantic/components/dimmer.min.js")
+	script(src="/static/lib/semantic/components/transition.min.js")
+	script(src="/static/lib/semantic/components/modal.min.js")
+	script.
+		$(document).ready(() => {
+			let isEditando = false
+
+			$("a.delete").click(function() {
+				const id = $(this).data('id')
+				const $modal = $("#deletar")
+				$modal.modal({
+					onApprove: () => {
+						$modal.addClass('loading')
+						$.ajax({
+							url: '/teacher/assignments/' + id + '?_method=DELETE',
+							method: 'DELETE'
+						}).done((data) => {
+							window.location.reload()
+						}).fail((err) => {
+							window.location.reload()
+						})
+					}
+				}).modal('show')
+			})
+		})

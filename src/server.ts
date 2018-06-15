@@ -9,9 +9,10 @@ import * as Constants   from './constants'
 import * as methodOverride from 'method-override'
 
 import { User, UserType, HWResponse }  from './model'
-import { UserService, TeacherService, SubjectService }  from './service'
+import { UserService, TeacherService, SubjectService, AssignmentService, StudentService }  from './service'
 import { authRequired } from './middlewares/auth.middleware'
 import { AdminController, TeacherController } from './controllers';
+import { MaterialService } from './service/material.service';
 
 // FIXME A very ugly fix e.e
 interface Request extends express.Request {
@@ -30,7 +31,10 @@ mainPages[UserType.STUDENT] = "/student"
 
 // FIXME: Eu sei que isso é uma gambiarra e.e
 TeacherService.getInstance()
+StudentService.getInstance()
 SubjectService.getInstance()
+MaterialService.getInstance()
+AssignmentService.getInstance()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')

@@ -1,0 +1,25 @@
+form.ui.form(method="POST", action=('/teacher/subjects/' + subject._id + '/assignments/' + (assignment? `${assignment._id}?_method=PUT` : '')))
+	.two.fields
+		.field
+			label Título
+			input(placeholder="Relatório: Visita à Escola", 
+				name="title", 
+				value=(assignment? assignment.title : ""))
+		.field
+			label Data Limite
+			input(placeholder="31/12/2018", 
+				name="limitDate", 
+				type="date",
+				value=(assignment? moment(assignment.limitDate).format('YYYY-MM-DD') : ""))
+	.field
+		label Descrição
+		textarea(placeholder="Lorem ipsum dolor sit amet...",
+			rows="2"
+			name="content")
+			=(assignment? assignment.description : "")
+	
+	input(type="submit", value=(assignment? "Editar" : "Cadastrar")).ui.right.floated.primary.button
+	if assignment
+		a.ui.button.right.floated(href="/teacher/subjects/" + subject._id + "/assignments") Cancelar
+	else
+		input(type="reset", value="Cancelar").ui.right.floated.button

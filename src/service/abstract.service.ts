@@ -21,6 +21,13 @@ export abstract class AbstractService<T extends Entity> implements Service<T> {
 		return this.datastore.findOne({_id: id}) as Promise<T>
 	}
 
+	findById(ids: string[]): Promise<T[]> {
+		const arr = []
+		for (const id of ids)
+			arr.push(this.getById(id))
+		return Promise.all(arr) as Promise<T[]>
+	}
+
 	list(): Promise<T[]> {
 		return this.datastore.find({}) as Promise<T[]>
 	}

@@ -1,3 +1,6 @@
 export * from './user.service'
 export * from './teacher.service'
 export * from './subject.service'
+export * from './material.service'
+export * from './assignment.service'
+export * from './student.service'

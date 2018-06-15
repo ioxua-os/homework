@@ -1,13 +1,16 @@
 mixin _menuOption(src, name, current)
-	a.item(href=src, class=(name == current? 'active': ''))= name
+	a.item(href=src, class=(name == current || src == current? 'active': ''))= name
 
 mixin menu(currentUrl, subjects)
 	.ui.secondary.vertical.menu
 		.header.item
 			a.ui.logo.icon.image(href="/teacher")
 				img(src="/static/images/hwlogo_light.png")
-		.item
-			.header Administração
-				.menu
-					each subject in subjects
-						+_menuOption('/teacher/subjects/' + subject._id, subject.name, currentUrl)
+
+		each subject in subjects
+			.item
+				.header=subject.name
+					.menu
+						+_menuOption('/teacher/subjects/' + subject._id + '/materials', 'Materiais', currentUrl)
+						+_menuOption('/teacher/subjects/' + subject._id + '/assignments', 'Tarefas', currentUrl)
+						+_menuOption('/teacher/subjects/' + subject._id + '/students', 'Alunos', currentUrl)

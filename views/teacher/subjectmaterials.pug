@@ -1,23 +1,25 @@
 extend _teachertemplate.pug
 
-block title 
-	if subject
-		=subject.name
-
 block menu
 	include _menu.pug
-	+menu(subject.name)
+	+menu('/teacher/subjects/' + subject._id + '/materials', subjects)
 
 block modals
+	include ../common/_modaldelete.pug
 
 block page
 	.ui.basic.segment
-		h1.ui.header Atividades
+		h1.ui.header Materiais
+		include ../common/material/_form.pug
 		
 	.ui.basic.segment
-		h1.ui.header Materiais
+		h1.ui.header Listagem
+		include ../common/material/_table.pug
 
 append scripts
+	script(src="/static/lib/semantic/components/dimmer.min.js")
+	script(src="/static/lib/semantic/components/transition.min.js")
+	script(src="/static/lib/semantic/components/modal.min.js")
 	script.
 		$(document).ready(() => {
 			let isEditando = false
@@ -29,7 +31,7 @@ append scripts
 					onApprove: () => {
 						$modal.addClass('loading')
 						$.ajax({
-							url: '/admin/subject/' + id + '?_method=DELETE',
+							url: '/teacher/materials/' + id + '?_method=DELETE',
 							method: 'DELETE'
 						}).done((data) => {
 							window.location.reload()

@@ -3,6 +3,7 @@ import { Subject, Teacher } from '../model';
 import { AbstractService } from './abstract.service';
 import { TeacherService } from './teacher.service';
 import { SSL_OP_NO_QUERY_MTU, EHOSTUNREACH } from 'constants';
+import { StudentService } from './student.service';
 
 export class SubjectService extends AbstractService<Subject> {
 
@@ -23,7 +24,11 @@ export class SubjectService extends AbstractService<Subject> {
 			TeacherService.getInstance().getByName("Leandro"),
 			this.getInstance().getByCode("HST002"),
 			this.getInstance().getByCode("SFT001"),
-			this.getInstance().getByCode("SFT002")
+			this.getInstance().getByCode("SFT002"),
+			StudentService.getInstance().getByName("Ioxua"),
+			StudentService.getInstance().getByName("Lucas"),
+			StudentService.getInstance().getByName("Amanda"),
+			StudentService.getInstance().getByName("Talles")
 		])
 		.then(results => {
 			const edith = results[0]
@@ -32,10 +37,18 @@ export class SubjectService extends AbstractService<Subject> {
 			const history = results[3]
 			const softwr1 = results[4]
 			const softwr2 = results[5]
+			const ioxua = results[6]
+			const lucas = results[7]
+			const amand = results[8]
+			const talle = results[9]
 
 			history.teacher_id = elias._id
 			softwr1.teacher_id = edith._id
-			softwr2.teacher_id = luque._id
+			softwr2.teacher_id = edith._id
+
+			history.student_ids = [lucas._id, amand._id]
+			softwr1.student_ids = [ioxua._id, talle._id, amand._id]
+			softwr2.student_ids = [talle._id, lucas._id]
 			this.getInstance().edit(history)
 			this.getInstance().edit(softwr1)
 			this.getInstance().edit(softwr2)

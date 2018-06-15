@@ -78,11 +78,19 @@ export class Assignment extends Entity {
 	title: string
 	limitDate: Date
 	description: string
+	subject_id: string
 	finishedAssignments: FinishedAssignment[]
+
+	constructor(title: string, description: string, limitDate: Date) {
+		super()
+		this.title = title
+		this.description = description
+		this.limitDate = limitDate
+	}
 }
 
 export class FinishedAssignment extends Entity {
-	assigment: Assignment
+	assigment_id: string
 	finishDate: Date
 	student: Student
 	content: string
@@ -92,16 +100,25 @@ export class Subject extends Entity {
 	code: string
 	name: string
 	teacher_id: string
+	student_ids: string[]
 	
 	constructor(code: string, name: string, teacher_id?: string) {
 		super()
 		this.code = code
 		this.name = name
-		this.teacher_id = teacher_id
+		this.teacher_id  = teacher_id
+		this.student_ids = []
 	}
 }
 
 export class Material extends Entity {
 	title: string
 	content: string
+	subject_id: string
+
+	constructor(title: string, content: string) {
+		super()
+		this.title = title
+		this.content = content
+	}
 }

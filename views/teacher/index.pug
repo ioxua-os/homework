@@ -2,8 +2,10 @@ extends _teachertemplate.pug
 
 block menu
 	include _menu.pug
-	+menu('asdsad', subjects)
+	+menu('', subjects)
 
 block page
-	| Olá, prof
-	=teacher.name
+	.ui.basic.segment
+		h1 Olá, prof. 
+			=teacher.name
+			|!

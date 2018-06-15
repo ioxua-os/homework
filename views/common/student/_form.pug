@@ -1,0 +1,33 @@
+form.ui.form(method="POST", action=('/teacher/subjects/' + subject._id + '/students/' + (student? `${student._id}?_method=PUT` : '')))
+	.two.fields
+		.field
+			label Nome
+			input(placeholder="Araújo Almeida", 
+				type="text", 
+				name="name", 
+				required, 
+				value=(student? student.name : ""))
+		.field
+			label Documento
+			input.document.mask(placeholder="123.456.789-10", 
+				name="document", 
+				value=(student? student.document : ""))
+	.two.fields
+		.field
+			label Email
+			input(placeholder="rei@dogado.com.br", 
+				type="email", 
+				name="email", 
+				value=(student? student.user.login : ""))
+		.field
+			label Senha
+			input(placeholder="Shhh! É um segredo", 
+				type="password", 
+				name="passwd", 
+				value=(student? student.user.passwd : ""))
+	
+	input(type="submit", value=(student? "Editar" : "Cadastrar")).ui.right.floated.primary.button
+	if teacher
+		a.ui.button.right.floated(href="/teacher/subjects/" + subject._id + "/students") Cancelar
+	else
+		input(type="reset", value="Cancelar").ui.right.floated.button

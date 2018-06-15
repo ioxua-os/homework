@@ -1,4 +1,3 @@
-import { read } from "fs/promises";
 import { HWResponse } from "./model";
 
 const prefix = "HW_"

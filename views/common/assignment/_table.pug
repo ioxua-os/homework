@@ -1,0 +1,18 @@
+table#table.ui.selectable.striped.table
+	thead
+		tr 
+			th Título
+			th Data Limite
+			th Alterar
+			th Excluir
+	tbody
+		each assignment in assignments
+			tr
+				td= assignment.title
+				td= moment(assignment.limitDate).locale('pt-BR').format('ll')
+				td 
+					a(href="/teacher/subjects/" + subject._id + '/assignments/' + assignment._id +"/edit").edit
+						i.edit.icon 
+				td 
+					a(href="#", data-id=assignment._id).delete
+						i.eraser.icon
