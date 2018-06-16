@@ -55,7 +55,7 @@ app.use('/admin', /*authRequired(UserType.ADMIN),*/ AdminController)
 app.use('/teacher', /*authRequired(UserType.TEACHER),*/ TeacherController)
 app.use('/student', /*authRequired(UserType.STUDENT),*/ StudentController)
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
 	res.render('index')
 })
 
