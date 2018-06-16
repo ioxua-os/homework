@@ -1,0 +1,35 @@
+extends _studenttemplate.pug
+
+block menu
+	include _menu.pug
+	+menu('/teacher/subjects/' + subject._id + '/assignments', subjects)
+
+block modals
+	include ../common/_modaldelete.pug
+
+block page
+	.ui.basic.segment
+		h1.ui.header=subject.name
+
+	.ui.unstackable.divided.items
+		each assignment in assignments
+			- var entregas = 3 + Math.floor(Math.random() * 32)
+			.item
+				.content
+					.header=assignment.title
+					.meta
+						spam Até 
+							=moment(assignment.limitDate).locale('pt-BR').format('ll')
+					.description
+						p=assignment.description
+					.extra=entregas 
+						|  entregas
+						if hasConcluded(assignment, student)
+							.ui.green.right.floated.label
+								i.check.icon
+								| Entregue
+						else
+							div.ui.right.floated.primary.button
+								| Entregar
+								i.right.chevron.icon
+block scripts

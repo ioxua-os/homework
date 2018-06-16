@@ -5,3 +5,4 @@ function __export(m) {
 exports.__esModule = true;
 __export(require("./admin.controller"));
 __export(require("./teacher.controller"));
+__export(require("./student.controller"));

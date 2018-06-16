@@ -62,4 +62,3 @@ typings/
 
 # We are using typescript so...
 **/*.js
-service/

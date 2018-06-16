@@ -1,5 +1,5 @@
 import { datastore } from 'nedb-promise'
-import { Subject, Teacher } from '../model';
+import { Subject, Teacher, Student } from '../model';
 import { AbstractService } from './abstract.service';
 import { TeacherService } from './teacher.service';
 import { SSL_OP_NO_QUERY_MTU, EHOSTUNREACH } from 'constants';
@@ -46,7 +46,7 @@ export class SubjectService extends AbstractService<Subject> {
 			softwr1.teacher_id = edith._id
 			softwr2.teacher_id = edith._id
 
-			history.student_ids = [lucas._id, amand._id]
+			history.student_ids = [lucas._id, ioxua._id, amand._id]
 			softwr1.student_ids = [ioxua._id, talle._id, amand._id]
 			softwr2.student_ids = [talle._id, lucas._id]
 			this.getInstance().edit(history)
@@ -69,6 +69,10 @@ export class SubjectService extends AbstractService<Subject> {
 
 	findByTeacher(teacher: Teacher): Promise<Subject[]> {
 		return this.datastore.find({teacher_id: teacher._id})
+	}
+
+	findByStudent(student: Student): Promise<Subject[]> {
+		return this.datastore.find({student_ids: student._id})
 	}
 
 	getByCode(code: string): Promise<Subject> {

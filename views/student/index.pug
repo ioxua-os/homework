@@ -1,0 +1,11 @@
+extends _studenttemplate.pug
+
+block menu
+	include _menu.pug
+	+menu('', subjects)
+
+block page
+	.ui.basic.segment
+		h1 Olá, 
+			=student.name
+			|!

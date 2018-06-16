@@ -90,10 +90,16 @@ export class Assignment extends Entity {
 }
 
 export class FinishedAssignment extends Entity {
-	assigment_id: string
 	finishDate: Date
-	student: Student
+	student_id: string
 	content: string
+
+	constructor(student_id: string, content: string, finishDate: Date) {
+		super()
+		this.student_id = student_id
+		this.content 	= content
+		this.finishDate = finishDate
+	}
 }
 
 export class Subject extends Entity {

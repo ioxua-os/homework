@@ -6,6 +6,7 @@ mixin menu(currentUrl)
 		.header.item
 			a.ui.logo.icon.image(href="/admin")
 				img(src="/static/images/hwlogo_light.png")
+		+_menuOption('/logoff', 'Sair', currentUrl)
 		.item
 			.header Administração
 				.menu

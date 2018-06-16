@@ -1,0 +1,17 @@
+extend ../_template.pug
+
+append stylesheets
+	//link(rel="stylesheet", href="/static/lib/semantic/components/form.min.css")
+	link(rel="stylesheet", href="/sass/teacher.sass")
+
+block title 
+	if student
+		=student.name
+		
+block content
+	.ui.stackable.grid.container
+		.ui.five.wide.column
+			block menu
+		
+		.ui.eleven.wide.column
+			block page

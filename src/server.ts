@@ -1,17 +1,14 @@
 import * as path        from 'path'
-import * as form        from 'express-form'
 import * as express     from 'express'
 import * as session     from 'express-session'
-import * as bodyParser  from 'body-parser'
 import * as compileSass from 'express-compile-sass'
-import * as NedbStore 	from 'connect-nedb-session-two'
 import * as Constants   from './constants'
 import * as methodOverride from 'method-override'
 
 import { User, UserType, HWResponse }  from './model'
 import { UserService, TeacherService, SubjectService, AssignmentService, StudentService }  from './service'
 import { authRequired } from './middlewares/auth.middleware'
-import { AdminController, TeacherController } from './controllers';
+import { AdminController, TeacherController, StudentController } from './controllers';
 import { MaterialService } from './service/material.service';
 
 // FIXME A very ugly fix e.e
@@ -55,7 +52,8 @@ app.use(session({
 }))
 
 app.use('/admin', /*authRequired(UserType.ADMIN),*/ AdminController)
-app.use('/teacher', /*authRequired(UserType.ADMIN),*/ TeacherController)
+app.use('/teacher', /*authRequired(UserType.TEACHER),*/ TeacherController)
+app.use('/student', /*authRequired(UserType.STUDENT),*/ StudentController)
 
 app.get('/', (req, res) => {
 	res.render('index')
@@ -64,7 +62,6 @@ app.get('/', (req, res) => {
 app.post('/login',
 	// TODO Implement form validation
 	(req: Request, res) => {
-		console.log(req.body)
 		UserService.getInstance().login(req.body['email'], req.body['password'])
 		.then((usr: User) => {
 			if(usr) {
@@ -81,6 +78,11 @@ app.post('/login',
 		})
 	}
 )
+
+app.get('/logoff', (req: Request, res) => {
+	delete req.session[Constants.SESSION_KEYS.loggedInUser]
+	res.redirect('/')
+})
 
 app.listen(port, () => {
 	console.log("Listening on port:", port)

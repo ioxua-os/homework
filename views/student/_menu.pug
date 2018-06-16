@@ -4,7 +4,7 @@ mixin _menuOption(src, name, current)
 mixin menu(currentUrl, subjects)
 	.ui.secondary.vertical.menu
 		.header.item
-			a.ui.logo.icon.image(href="/teacher")
+			a.ui.logo.icon.image(href="/student")
 				img(src="/static/images/hwlogo_light.png")
 
 		+_menuOption('/logoff', 'Sair', currentUrl)
@@ -12,6 +12,5 @@ mixin menu(currentUrl, subjects)
 			.item
 				.header=subject.name
 					.menu
-						+_menuOption('/teacher/subjects/' + subject._id + '/materials', 'Materiais', currentUrl)
-						+_menuOption('/teacher/subjects/' + subject._id + '/assignments', 'Tarefas', currentUrl)
-						+_menuOption('/teacher/subjects/' + subject._id + '/students', 'Alunos', currentUrl)
+						+_menuOption('/student/subjects/' + subject._id + '/materials', 'Materiais', currentUrl)
+						+_menuOption('/student/subjects/' + subject._id + '/assignments', 'Tarefas', currentUrl)

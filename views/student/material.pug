@@ -1,0 +1,26 @@
+extends _studenttemplate.pug
+
+block menu
+	include _menu.pug
+	+menu('/teacher/subjects/' + subject._id + '/materials', subjects)
+
+block page
+	.ui.basic.segment
+		h1.ui.header=subject.name
+
+	.ui.unstackable.divided.items
+		each material in materials
+			- var visu = 30 + Math.floor(Math.random() * 500)
+			- var data = new Date()
+			- data.setDate(new Date().getDate() - (5 + Math.floor(Math.random() * 30)))
+			.item
+				.content
+					.header=material.title
+					.meta
+						spam=moment(data).locale('pt-BR').format('ll')
+					.description
+						p=material.content
+					.extra=visu 
+						|  visualizações
+
+block scripts
